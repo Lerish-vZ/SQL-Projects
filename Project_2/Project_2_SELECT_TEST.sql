@@ -11,3 +11,6 @@ SELECT * FROM contact_seeking;
 
 INSERT INTO profession (profession) 
 VALUES ('Waitress');
+
+INSERT INTO zip_code (zip_code)
+VALUES ('760');
