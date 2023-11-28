@@ -6,7 +6,7 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS public.products
 (
     product_id smallserial,
-    name character varying(10),
+    name character varying(25),
     price money,
     PRIMARY KEY (product_id)
 );
@@ -40,3 +40,67 @@ CREATE TABLE IF NOT EXISTS public.order_details
     qty smallint
 );
 END;
+
+-------------------------------insert--------------------------------------------------
+
+INSERT INTO products(name, price)
+VALUES 
+	('Coke', 19.99),
+	('Chips', 14.99),
+	('Bar One', 11.99),
+	('Bratz', 2.99),
+	('Icy', 9.99),
+	('Sprite', 18.99),
+	('Knickerball', 4.99),
+	('Sour Worms', 7.95),
+	('Heart Sweet', 0.50),
+	('Chappie', 2.60);
+
+SELECT * FROM products;
+
+INSERT INTO users(name)
+VALUES 
+	('Amanda'),
+	('Julio'),
+	('Megan'),
+	('Peter');
+	
+SELECT * FROM users;
+
+-------------------------------Add items function-------------------------------------------------
+
+CREATE OR REPLACE FUNCTION add(pro_id smallint)
+RETURNS void AS $$
+BEGIN
+	IF EXISTS(SELECT * FROM cart WHERE product_id = pro_id)
+		THEN 
+			UPDATE cart SET qty = qty + 1 WHERE product_id = pro_id;
+		ELSE 
+			INSERT INTO cart(product_id, qty) VALUES (pro_id, 1);
+	END IF; 
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION remove(pro_id smallint)
+RETURNS void AS $$
+BEGIN 
+	IF EXISTS(SELECT * FROM cart WHERE product_id = pro_id)
+		THEN 
+			IF EXISTS(SELECT * FROM cart WHERE qty > 1 AND product_id = pro_id)
+				THEN 
+					UPDATE cart SET qty = qty - 1 WHERE product_id = pro_id;
+			ELSE 
+				DELETE FROM cart WHERE product_id = pro_id;
+			END IF;
+	END IF; 
+END; 
+$$ LANGUAGE plpgsql;
+
+SELECT add(CAST (1 AS smallint));
+
+SELECT * FROM cart;
+
+SELECT remove(CAST (1 AS smallint));
+
+-----------------------------------------------------------------------------------------
+
