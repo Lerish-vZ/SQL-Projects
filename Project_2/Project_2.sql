@@ -125,3 +125,153 @@ ALTER TABLE IF EXISTS public.contact_seeking
     NOT VALID;
 
 END;
+
+INSERT INTO profession (profession)
+VALUES 
+	('Librarian'),
+	('Web Dveloper'),
+	('Project Manager'),
+	('Teacher'),
+	('Student'),
+	('Professor'),
+	('Waitress'),
+	('Architect'),
+	('Engineer'),
+	('Electrician'),
+	('Accountant'),
+	('Advertising Manager'),
+	('Administrator'),
+	('Barista'),
+	('Bartender'),
+	('Broker'),
+	('Consultant'),
+	('Construction Worker');
+
+INSERT INTO zip_code (zip_code, city, province)
+VALUES 
+	('0699', 'Polokwane', 'Limpopo'),
+	('0480', 'Bela-Bela', 'Limpopo'),
+	('1038', 'Emalahleni', 'Mpumalanga'),
+	('1201', 'Mbombela', 'Mpumalanga'),
+	('2999', 'Rustenburg', 'North West'),
+	('2520', 'Potchefstroom', 'North West'),
+	('0126', 'Pretoria', 'Gauteng'),
+	('2001', 'Johannesburg', 'Gauteng'),
+	('9300', 'Bloemfontein', 'Free State'),
+	('9460', 'Welkom', 'Free State'),
+	('3201', 'Pietermaritzburg', 'KwaZulu-Natal'),
+	('4057', 'Durban', 'KwaZulu-Natal'),
+	('8301', 'Kimberley', 'North Cape'),
+	('8890', 'Pofadder', 'North Cape'),
+	('5201', 'East London', 'East Cape'),
+	('6006', 'Gqeberha', 'East Cape'),
+	('8001', 'Cape Town', 'West Cape'),
+	('7600', 'Stellenbosch', 'West Cape');
+
+INSERT INTO status (status)
+VALUES 
+	('Single'),
+	('Married'), 
+	('Divorced'),
+	('Dating'),
+	('Situationship'),
+	('Mingle'),
+	('Unsure');
+	
+INSERT INTO interests (interest)
+VALUES 
+	('Reading'),
+	('Dancing'),
+	('Hiking'),
+	('Baking'),
+	('Cooking'),
+	('Running'),
+	('Gyming'),
+	('Swimming'),
+	('Gaming'),
+	('Camping'),
+	('Gardening'),
+	('Movies'),
+	('Series'),
+	('Music');
+
+INSERT INTO seeking (seeking)
+VALUES 
+	('Short-Term'),
+	('Long-Term'),
+	('Marriage'),
+	('Casual');
+
+INSERT INTO my_contacts ( --1-16
+	last_name, 
+	first_name,
+	phone,
+	email, 
+	gender,
+	birthday, 
+	prof_id, -- 1-18
+	zip_code, 
+	status_id) --1-7
+VALUES 
+	('Hawthorne', 'Eira', '0756423099', 'hawthorneira@gmail.com', 'F', '2000/04/15', 4, '9300', 1),
+	('Gaspard', 'Amelia', '0852419751', 'amelgasp@gmail.com', 'F', '1995/11/25', 2, '5201', 2),
+	('Colter', 'Drago', '0622755690', 'dc@gmail.com', 'M', '1993/02/09', 8, '0699', 4),
+	('Crusan', 'Bello', '082311446', 'bello.crusan@gmail.com', 'M', '1997/08/23', 18, '3201', 5),
+	('Courtney', 'Bambi', '0611338854', 'bams@gmail.com', 'F', '1992/01/30', 10, '8301', 3),
+	('Altink', 'Talip', '0702123522', 'talipa@gmail.com', 'M', '1999/04/22', 5, '1201', 6),
+	('Pierno', 'Annemiek', '0800957174', 'pierann@gmail.com', 'F', '2001/05/17', 12, '7600', 4),
+	('Pagano', 'Ivan', '0877231323', 'ipagano@gmail.com', 'M', '1996/03/14', 6, '2999', 1),
+	('Necchi', 'Jordana', '0721232456', 'necchi@gmail.com', 'F', '1993/05/20', 17, '2001', 7),
+	('Jérôme', 'Christie', '0895924617', 'chris@gmail.com', 'F', '1992/07/23', 11, '9460', 5),
+	('Nardi', 'Brooklynn', '0733967854', '23nardi@gmail.com', 'F', '1991/07/28', 3, '1201', 4),
+	('Batts', 'Fatih', '0842365990', 'bfaith@gmail.com', 'F', '2003/01/15', 16, '4057', 3),
+	('Giroux', 'Lamar', '0623112438', 'ouxlam@gmail.com', 'M', '1989/06/21', 14, '1038', 2),
+	('Fonda', 'Giraldo', '0812345678', 'fon@gmail.com', 'M', '1996/09/12', 10, '8890', 5),
+	('Trueman', 'Evaristo', '0721359448', 'evartrue@gmail.com', 'M', '2000/03/26', 1, '3201', 1),
+	('Draper', 'Giona', '0823659961', 'drap@gmail.com', 'F', '2003/06/13', 11, '6006', 6);
+	
+INSERT INTO contact_interest (contact_id, interest_id)
+VALUES 
+	(1, 2),
+	(2, 3), 
+	(3, 4), 
+	(4, 5),
+	(5, 6), 
+	(6, 7),
+	(7, 8),
+	(8, 9), 
+	(9, 10),
+	(10, 11), 
+	(11, 12),
+	(12, 13),
+	(13, 14),
+	(14, 1), 
+	(15, 2), 
+	(16, 3),
+	(7, 4), 
+	(5, 14), 
+	(10, 1), 
+	(6, 9),
+	(12, 7),
+	(4, 13),
+	(8, 3);
+	
+INSERT INTO contact_seeking (contact_id, seeking_id) 
+VALUES 
+	(1, 1),
+	(2, 2),
+	(3, 3),
+	(4, 4), 
+	(5, 1),
+	(6, 3),
+	(7, 2),
+	(8, 4),
+	(9, 1), 
+	(10, 3),
+	(11, 4),
+	(12, 2),
+	(13, 2),
+	(14, 4),
+	(15, 3), 
+	(16, 2);
+	
