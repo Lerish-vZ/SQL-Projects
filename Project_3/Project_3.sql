@@ -130,10 +130,26 @@ SELECT * FROM cart;
 
 SELECT add(CAST (1 AS smallint));
 SELECT add(CAST (3 AS smallint));
-SELECT add(CAST (8 AS smallint));
+SELECT add(CAST (8 AS smallint)); --x5
+
+SELECT remove(CAST (8 AS smallint));
 
 ---------------------------------------------------------------------------------------
 
 DELETE FROM order_header;
 DELETE FROM order_details;
 DELETE FROM cart;
+
+---------------------------------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION print()
+RETURNS void AS $$
+BEGIN 
+	IF ((SELECT count(*) FROM order_header) AND (SELECT count(*) FROM order_details) >= 2)
+	THEN 
+		SELECT * 
+		FROM order_header JOIN order_details
+		ON order_header.order_id = order_details.order_header;
+	END IF;
+END;
+$$ LANGUAGE plpgsql;
