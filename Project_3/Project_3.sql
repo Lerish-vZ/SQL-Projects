@@ -106,16 +106,35 @@ SELECT remove(CAST (1 AS smallint));
 
 ------------------------------Checkout, ORDER_DETAILS-------------------------------------------------
 
+CREATE OR REPLACE FUNCTION checkout(u_id smallint)
+RETURNS void AS $$
+BEGIN 
+	INSERT INTO order_header (user_id, order_date) 
+	VALUES (u_id, (SELECT localtimestamp));
+	
+	INSERT INTO order_details (order_header, product_id, qty)
+	SELECT u_id, product_id, qty FROM cart;
+	
+	DELETE FROM cart WHERE product_id > 0;
+END;
+$$ LANGUAGE plpgsql;
 
-INSERT INTO order_header (user_id, order_date) 
-VALUES (1, (SELECT localtimestamp));
+SELECT checkout(CAST( 1 AS smallint));
 
 SELECT * FROM order_header;
 
+SELECT * FROM order_details;
+
+SELECT * FROM cart;
 ---------------------------------------------------------------------------------------
 
 
-INSERT INTO order_details (order_header, product_id, qty) 
-VALUES 
+SELECT add(CAST (1 AS smallint));
+SELECT add(CAST (3 AS smallint));
+SELECT add(CAST (8 AS smallint));
 
+---------------------------------------------------------------------------------------
 
+DELETE FROM order_header;
+DELETE FROM order_details;
+DELETE FROM cart;
