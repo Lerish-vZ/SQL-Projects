@@ -128,7 +128,6 @@ SELECT * FROM order_details;
 SELECT * FROM cart;
 ---------------------------------------------------------------------------------------
 
-
 SELECT add(CAST (1 AS smallint));
 SELECT add(CAST (3 AS smallint));
 SELECT add(CAST (8 AS smallint));
