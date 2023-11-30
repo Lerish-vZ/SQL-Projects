@@ -142,14 +142,16 @@ DELETE FROM cart;
 
 ---------------------------------------------------------------------------------------
 
-CREATE OR REPLACE FUNCTION print()
-RETURNS void AS $$
-BEGIN 
-	IF ((SELECT count(*) FROM order_header) AND (SELECT count(*) FROM order_details) >= 2)
-	THEN 
-		SELECT * 
-		FROM order_header JOIN order_details
-		ON order_header.order_id = order_details.order_header;
-	END IF;
-END;
-$$ LANGUAGE plpgsql;
+-- CREATE OR REPLACE FUNCTION print()
+-- RETURNS void AS $$
+-- BEGIN 
+-- 	IF ((SELECT count(*) FROM order_header) > 1 AND (SELECT count(*) FROM order_details) > 1)
+-- 	THEN 
+-- 		SELECT * 
+-- 		FROM order_header JOIN order_details
+-- 		ON order_header.order_id = order_details.order_header;
+-- 	END IF;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+-- SELECT print();
