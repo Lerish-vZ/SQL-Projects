@@ -81,6 +81,8 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-------------------------------Remove items function-------------------------------------------------
+
 CREATE OR REPLACE FUNCTION remove(pro_id smallint)
 RETURNS void AS $$
 BEGIN 
@@ -102,5 +104,18 @@ SELECT * FROM cart;
 
 SELECT remove(CAST (1 AS smallint));
 
------------------------------------------------------------------------------------------
+------------------------------Checkout, ORDER_DETAILS-------------------------------------------------
+
+
+INSERT INTO order_header (user_id, order_date) 
+VALUES (1, (SELECT localtimestamp));
+
+SELECT * FROM order_header;
+
+---------------------------------------------------------------------------------------
+
+
+INSERT INTO order_details (order_header, product_id, qty) 
+VALUES 
+
 
