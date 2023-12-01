@@ -6,7 +6,7 @@ BEGIN;
 CREATE TABLE IF NOT EXISTS public.products
 (
     product_id smallserial,
-    name character varying(25),
+    name character varying(20),
     price money,
     PRIMARY KEY (product_id)
 );
@@ -39,6 +39,14 @@ CREATE TABLE IF NOT EXISTS public.order_details
     product_id smallint,
     qty smallint
 );
+
+ALTER TABLE IF EXISTS public.order_details
+    ADD CONSTRAINT order_id FOREIGN KEY (order_header)
+    REFERENCES public.order_header (order_id) MATCH SIMPLE
+    ON UPDATE NO ACTION
+    ON DELETE NO ACTION
+    NOT VALID;
+
 END;
 
 -------------------------------insert--------------------------------------------------
@@ -112,8 +120,12 @@ BEGIN
 	INSERT INTO order_header (user_id, order_date) 
 	VALUES (u_id, (SELECT localtimestamp));
 	
-	INSERT INTO order_details (order_header, product_id, qty)
-	SELECT u_id, product_id, qty FROM cart;
+	INSERT INTO order_details (product_id, qty)
+	SELECT product_id, qty FROM cart;
+	
+	UPDATE order_details 
+	SET order_header = 1
+	WHERE order_header IS NULL;
 	
 	DELETE FROM cart WHERE product_id > 0;
 END;
@@ -155,3 +167,11 @@ DELETE FROM cart;
 -- $$ LANGUAGE plpgsql;
 
 -- SELECT print();
+
+
+DROP TABLE cart;
+DROP TABLE products;
+DROP TABLE users;
+DROP TABLE order_details;
+DROP TABLE order_header;
+
