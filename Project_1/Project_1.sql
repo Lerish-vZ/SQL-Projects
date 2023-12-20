@@ -96,7 +96,7 @@ VALUES
 	('Nelson', 'Pendra', 'M', '259 German Road, Hillside', 'NPendra@gmail.com', 7, 1, 2, 2),
 	('Amber', 'Tuckson', 'F', 'Unit 3, Johnson Ave, Penwood', 'Tuckson.amber@gmail.com', 8, 3, 4, 1);
 
-INSERT INTO department (
+INSERT INTO department ( 
 	depart_name, 
 	depart_city)
 VALUES 
