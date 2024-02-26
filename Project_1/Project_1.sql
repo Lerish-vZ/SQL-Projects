@@ -127,3 +127,20 @@ VALUES
 	(20000);
 
 SELECT * FROM public.employees;
+
+SELECT * FROM public.department;
+
+INSERT INTO employees (
+	first_name, 
+	surname,
+	gender, 
+	address, 
+	email,
+	depart_id,
+	role_id,
+	salary_id,
+	overtime_id)
+VALUES
+	('Jemma', 'Alin', 'F', '65 Johnson Ave, Harbor', 'JemA@gmail.com', 20, 1, 1, 1);
+	
+	

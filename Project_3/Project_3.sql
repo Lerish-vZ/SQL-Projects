@@ -106,7 +106,7 @@ BEGIN
 END; 
 $$ LANGUAGE plpgsql;
 
-SELECT add(CAST (1 AS smallint));
+SELECT add(CAST (2 AS smallint));
 
 SELECT * FROM cart;
 
